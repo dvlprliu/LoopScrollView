@@ -46,6 +46,8 @@
     [self.view addSubview:self.loopScrollView];
 
     self.loopScrollView.imgUrls = self.imageUrls;
+  
+  self.automaticallyAdjustsScrollViewInsets = NO;
 
 }
 
