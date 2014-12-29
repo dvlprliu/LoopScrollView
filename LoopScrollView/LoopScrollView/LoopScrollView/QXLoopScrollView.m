@@ -44,6 +44,8 @@
     {
         self.imageViews = [NSMutableArray arrayWithCapacity:TOTAL_IMG];
         self.indexDict = [NSMutableDictionary dictionary];
+        self.autoScrollEnable = NO;
+        self.secPerPage = 3.0f;
         
         [self addSubview:self.scrollView];
         [self setupReusableButtons];
@@ -60,6 +62,8 @@
     if (self) {
         self.imageViews = [NSMutableArray arrayWithCapacity:TOTAL_IMG];
         self.indexDict = [NSMutableDictionary dictionary];
+        self.autoScrollEnable = NO;
+        self.secPerPage = 3.0f;
         
         [self addSubview:self.scrollView];
         [self setupReusableButtons];
@@ -140,12 +144,15 @@
 #pragma mark - 计时器
 - (void)startTimer
 {
-
+    if (!_autoScrollEnable) {
+        return;
+    }
+    
     [self stopTimer];
     if (self.imgUrls.count>1)
     {
         __weak QXLoopScrollView *wself = self;
-        self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:1.0f block:^{
+        self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:self.secPerPage block:^{
             QXLoopScrollView *sself = wself;
             [sself handleTimer:nil];
         } repeats:YES];
@@ -155,6 +162,10 @@
 
 - (void)stopTimer
 {
+    if (!_autoScrollEnable) {
+        return;
+    }
+    
     [self.timer invalidate];
     self.timer = nil;
 }

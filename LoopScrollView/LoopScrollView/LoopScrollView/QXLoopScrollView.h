@@ -32,6 +32,16 @@
 @interface QXLoopScrollView : UIView
 @property (weak, nonatomic) id<QXLoopScrollViewDelegate>delegate;
 @property (strong, nonatomic) NSMutableArray *imgUrls;
+
+/**
+ *  是否启用自动滚动，默认为关闭
+ */
+@property (nonatomic, assign) BOOL autoScrollEnable;
+/**
+ *  每页停留的时间，默认是3秒
+ */
+@property (nonatomic, assign) CGFloat secPerPage;
+
 @end
 
 

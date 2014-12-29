@@ -43,6 +43,8 @@
     //MARK: 使用示例
 //    self.loopScrollView = [[QXLoopScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 140)];
     self.loopScrollView.delegate = self;
+    self.loopScrollView.autoScrollEnable = YES;
+    self.loopScrollView.secPerPage = 2.0f;
     [self.view addSubview:self.loopScrollView];
 
     self.loopScrollView.imgUrls = self.imageUrls;
@@ -52,7 +54,7 @@
 #pragma mark - QXLoopScrollViewDelegate
 - (void)loopScrollViewDidSelectIndex:(NSInteger)index
 {
-    NSLog(@"选择%ld",index);
+    NSLog(@"选择%ld",(long)index);
 }
 
 @end
